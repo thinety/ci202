@@ -71,7 +71,7 @@ bissecao(f, 0, 8, 1, 5)
 def posicao_falsa(f, a, b, interval_size, max_i):
     i = 0
     while b-a >= interval_size:
-        x_i = a - f(a) * (b-a)/(f(b)-f(a))
+        x_i = (a*f(b) - b*f(a))/(f(b) - f(a))
         if f(a) * f(x_i) < 0:
             b = x_i
         else:

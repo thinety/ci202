@@ -76,7 +76,7 @@ def secante(f, x_0, x_1, max_diff = 0.0001, max_err = 0.0001, max_i = 6):
     x_im1, x_i = x_0, x_1
     i = 1
     while True:
-        x_im1, x_i = x_i, x_i - f(x_i) * (x_i - x_im1) / (f(x_i) - f(x_im1))
+        x_im1, x_i = x_i, (x_im1*f(x_i) - x_i*f(x_im1))/(f(x_i) - f(x_im1))
         i += 1
 
         print(f'x_{i} = {x_i:.6f}')

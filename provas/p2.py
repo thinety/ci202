@@ -68,10 +68,10 @@ def secante(f, x_0, x_1, max_diff, max_err, max_i):
     i = 1
     x_im1, x_i = x_0, x_1
     while True:
-        i +=1
+        i += 1
 
         # assignment feito em tuple para não precisar de variável temporária
-        x_im1, x_i = x_i, x_i - f(x_i) * (x_i-x_im1)/(f(x_i)-f(x_im1))
+        x_im1, x_i = x_i, (x_im1*f(x_i) - x_i*f(x_im1))/(f(x_i) - f(x_im1))
 
         print(f'x_{i} = {x_i:.6f}')
 
