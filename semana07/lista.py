@@ -9,6 +9,9 @@ def gauss_seidel(M, X, max_i, max_err):
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
     `X` é o vetor com as aproximações iniciais, que é
     modificado durante o algoritmo.
+
+    É necesssário verificar as condições de convergência previamente
+    (sistema deve satisfazer o critério de Sassenfeld).
     """
 
     n = M.shape[0]
@@ -64,7 +67,8 @@ def relaxacao(M, X, max_i, max_err):
         i += 1
 
         r = np.argmax(np.abs(R))
-        X[r] = (B[r] + A[r,r]*X[r] - A[r]@X) / A[r,r]
+        x = np.argmax(np.abs(A[r]))
+        X[x] = (B[r] + A[r,x]*X[x] - A[r]@X) / A[r,x]
 
         R = A@X - B
 

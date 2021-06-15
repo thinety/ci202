@@ -56,6 +56,9 @@ def gauss_jacobi(M, X, max_i, max_err):
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
     `X` é o vetor com as aproximações iniciais, que é
     modificado durante o algoritmo.
+
+    É necesssário verificar as condições de convergência previamente
+    (sistema deve estar na forma diagonalmente dominante).
     """
 
     n = M.shape[0]
