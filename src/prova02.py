@@ -1,5 +1,5 @@
 from math import cos, exp
-from lib import root_finding as rf
+from lib import root_finding
 
 
 # Questão 1
@@ -7,7 +7,7 @@ from lib import root_finding as rf
 def f(x):
     return -16*cos(-2*x) + 13*x**2 - 267.69
 
-rf.bisection(f, 2, 12, 1, 6)
+root_finding.bisection(f, 2, 12, 1, 6)
 
 # Questão 2
 
@@ -16,7 +16,7 @@ def f(x):
 def f_prime(x):
     return -57*x**-4 - 12*x**2
 
-rf.newton_raphson(f, f_prime, 2, 0.0001, 0.0001, 5)
+root_finding.newton_raphson(f, f_prime, 2, 0.0001, 0.0001, 5)
 
 # Questão 3
 
@@ -25,4 +25,4 @@ def f(x):
 
 # 5 iterações no método da secante significa calcular até x_6
 # já que começamos com tanto x_0 como x_1
-rf.secant(f, 2, 3, 0.01, 0.01, 6)
+root_finding.secant(f, 2, 3, 0.01, 0.01, 6)

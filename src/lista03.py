@@ -1,5 +1,5 @@
 from math import exp, sin, cos, log
-from lib import root_finding as rf
+from lib import root_finding
 
 
 # Questão 1
@@ -44,22 +44,22 @@ for i in range(-5, 5):
 
 def f(x):
     return -17*exp(-x) + 4*cos(x) + 7.39
-rf.bisection(f, -10, 4, 1, 5)
+root_finding.bisection(f, -10, 4, 1, 5)
 
 # Questão 3
 
 def f(x):
     return -3*sin(-x) + 13*exp(x) - 1631.38
-rf.bisection(f, 0, 8, 1, 5)
+root_finding.bisection(f, 0, 8, 1, 5)
 
 # Questão 4
 
 def f(x):
     return -7*log(x**-2) + 14*x**-1 - 22.39
-rf.false_position(f, 2, 23, 0.1, 5)
+root_finding.false_position(f, 2, 23, 0.1, 5)
 
 # Questão 5
 
 def f(x):
     return -4*x**3 + 18*x**2 - 509.98
-rf.false_position(f, -14, 3, 1, 5)
+root_finding.false_position(f, -14, 3, 1, 5)

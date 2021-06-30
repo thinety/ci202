@@ -8,13 +8,11 @@ def polynomial(points):
 
     n = points.shape[0]
 
-    M = _np.vander(points[:,0], n+1, increasing=True)
-    M[:,-1] = points[:,1]
-
+    M = _np.array([[points[i,0]**j for j in range(n)] + [points[i,1]] for i in range(n)])
     A = _ls.gauss(M)
 
     def f(x):
-        X = _np.float64([x**i for i in range(n)])
+        X = _np.array([x**i for i in range(n)])
         s = _np.sum(A*X)
         return s
 
@@ -27,10 +25,10 @@ def lagrange(points, x):
 
     n = points.shape[0]
 
-    P_nm1 = _np.float64(0)
+    P_nm1 = 0
     for i in range(n):
 
-        L_i = _np.float64(1)
+        L_i = 1
         for j in range(n):
             if j == i:
                 continue
