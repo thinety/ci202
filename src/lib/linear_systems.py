@@ -10,6 +10,7 @@ def cramer(M):
     Retorna o vetor solução.
     """
 
+    M = _np.array(M)
     n = M.shape[0]
     A = M[:,:-1]
     B = M[:,-1]
@@ -30,7 +31,6 @@ def gauss(M, piv=True):
     Resolve um sistema linear por eliminação de Gauss.
 
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
-    Ela é modificada durante o algoritmo.
 
     `piv` é um booleano que indica se a escolha do melhor pivô
     deve ser realizada em cada passo da triangulação.
@@ -38,6 +38,7 @@ def gauss(M, piv=True):
     Retorna o vetor solução.
     """
 
+    M = _np.array(M)
     n = M.shape[0]
 
     # triangulação
@@ -64,11 +65,11 @@ def gauss_jordan(M):
     Resolve um sistema linear pelo método de Gauss-Jordan.
 
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
-    Ela é modificada durante o algoritmo.
 
     Retorna o vetor solução.
     """
 
+    M = _np.array(M)
     n = M.shape[0]
 
     # diagonalização
@@ -98,6 +99,7 @@ def lu(A, *Bs):
     Retorna os `k` vetores solução.
     """
 
+    A = _np.array(A)
     n = A.shape[0]
 
     L = _np.diagonal(n)
@@ -112,6 +114,8 @@ def lu(A, *Bs):
 
     Xs = []
     for B in Bs:
+        B = _np.array(B)
+
         Y = _np.zeros(n)
         for i in range(n):
             Y[i] = (B[i] - _np.sum(L[i,:i] * Y[:i])) / L[i,i]
@@ -130,17 +134,17 @@ def gauss_jacobi(M, X, max_i, max_err):
     Resolve um sistema linear pelo método de Gauss-Jacobi
 
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
-    `X` é o vetor com as aproximações iniciais, que é
-    modificado durante o algoritmo.
+    `X` é o vetor com as aproximações iniciais.
 
     É necesssário verificar as condições de convergência previamente
     (sistema deve estar na forma diagonalmente dominante).
     """
 
+    M = _np.array(M)
     n = M.shape[0]
     A = M[:,:-1]
     B = M[:,-1].reshape((n,1))
-    X = X.reshape((n,1))
+    X = _np.array(X).reshape((n,1))
 
     D = _np.diagonal(n) * A
     I = _np.tril(A, k=-1)
@@ -168,17 +172,17 @@ def gauss_seidel(M, X, max_i, max_err):
     Resolve um sistema linear pelo método de Gauss-Seidel
 
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
-    `X` é o vetor com as aproximações iniciais, que é
-    modificado durante o algoritmo.
+    `X` é o vetor com as aproximações iniciais.
 
     É necesssário verificar as condições de convergência previamente
     (sistema deve satisfazer o critério de Sassenfeld).
     """
 
+    M = _np.array(M)
     n = M.shape[0]
     A = M[:,:-1]
     B = M[:,-1].reshape((n,1))
-    X = X.reshape((n,1))
+    X = _np.array(X).reshape((n,1))
 
     D = _np.diagonal(n) * A
     I = _np.tril(A, k=-1)
@@ -206,14 +210,14 @@ def relaxation(M, X, max_i, max_err):
     Resolve um sistema linear pelo método da relaxação
 
     `M` é a matriz expandida do sistema (formato `(n,n+1)`).
-    `X` é o vetor com as aproximações iniciais, que é
-    modificado durante o algoritmo.
+    `X` é o vetor com as aproximações iniciais.
     """
 
+    M = _np.array(M)
     n = M.shape[0]
     A = M[:,:-1]
     B = M[:,-1].reshape((n,1))
-    X = X.reshape((n,1))
+    X = _np.array(X).reshape((n,1))
 
     i = 0
     R = A@X - B
